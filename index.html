@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#5b21b6">
+  <title>Music Ranking Live</title>
+  <script>
+    (function(){
+      const p = new URLSearchParams(location.search);
+      if (p.get('room')) document.documentElement.classList.add('student-entry');
+    })();
+  </script>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+</head>
+<body>
+  <div class="floating-instruments" aria-hidden="true"><span>🎻</span><span>🎹</span><span>🎺</span><span>🥁</span><span>🎷</span><span>🎸</span></div>
+  <main class="app-shell">
+    <header class="brand">
+      <div class="logo-disc">♫</div>
+      <div class="brand-copy">
+        <h1><span>Music Ranking</span> Live</h1>
+        <p>Dalla sinfonia al rock: ascolta, scegli, classifica.</p>
+      </div>
+      <div class="brand-right">
+        <div class="instrument-strip" aria-hidden="true"><span>🎻</span><span>🎹</span><span>🎺</span><span>🥁</span><span>🎷</span><span>🎸</span></div>
+        <div class="credit">una risorsa didattica del Prof. Fontolan Michele</div>
+      </div>
+    </header>
+
+    <section id="setupView" class="setup-grid">
+      <section id="teacherSetup" class="panel">
+        <div class="section-title"><h2>👨‍🏫 Crea una sfida musicale</h2></div>
+        <div class="mode-grid">
+          <button class="mode-card" data-mode="ranking"><strong>🏆 RANKING</strong><span>classifica completa alla fine</span></button>
+          <button class="mode-card active" data-mode="blind"><strong>🔒 BLIND RANKING</strong><span>scegli il posto e bloccalo</span></button>
+          <button class="mode-card" data-mode="tier"><strong>🔥 TIER LIST</strong><span>S · A · B · C · D</span></button>
+        </div>
+        <label for="sessionTitle">Titolo attività</label>
+        <input id="sessionTitle" value="Music Ranking Live" maxlength="80">
+
+        <div class="toolbar">
+          <div class="section-title compact"><h2>🎼 Ascolti</h2></div>
+          <div class="toolbar-actions">
+            <label class="button secondary file-button">📄 Carica PDF<input id="pdfInput" type="file" accept="application/pdf"></label>
+            <button id="addTrackBtn" class="button secondary">➕ Aggiungi ascolto</button>
+          </div>
+        </div>
+
+        <div id="emptyTracks" class="empty-state">
+          <div class="empty-icon">🎧</div>
+          <h3>Nessun ascolto ancora</h3>
+          <p>Carica un PDF con link cliccabili oppure aggiungi gli ascolti manualmente.</p>
+        </div>
+        <div id="trackEditor" class="track-editor"></div>
+
+        <div class="options-row">
+          <label class="toggle"><input id="showTitle" type="checkbox" checked><span>Mostra titolo agli studenti</span></label>
+          <label class="toggle"><input id="showImage" type="checkbox" checked><span>Mostra immagine agli studenti</span></label>
+        </div>
+        <button id="createSessionBtn" class="button primary wide">🎶 Crea sessione</button>
+        <p id="setupHint" class="hint"></p>
+      </section>
+
+      <section id="studentJoin" class="panel panel-dark">
+        <div class="section-title"><h2>📱 Entra nella sessione</h2></div>
+        <div id="manualRoomField">
+          <label for="joinCode">Codice stanza</label>
+          <input id="joinCode" maxlength="6" placeholder="ABC123" autocomplete="off">
+        </div>
+        <div id="qrRoomBanner" class="room-banner hidden"><span>STANZA</span><strong id="qrRoomCode">—</strong></div>
+        <label for="nickname">Nickname</label>
+        <input id="nickname" maxlength="30" placeholder="es. Leo7" autocomplete="off">
+        <button id="joinBtn" class="button primary wide">Entra</button>
+        <p class="hint light">Nessuna registrazione: basta un nickname.</p>
+      </section>
+    </section>
+
+    <section id="teacherView" class="hidden"></section>
+    <section id="studentView" class="hidden"></section>
+
+    <section id="configView" class="panel hidden">
+      <div class="section-title"><h2>⚙️ Configurazione Firebase necessaria</h2></div>
+      <p>Questa versione deve essere collegata una sola volta a Firebase per far comunicare LIM e tablet in tempo reale.</p>
+      <p>Segui il file <strong>SETUP_PASSO_PASSO.txt</strong> incluso nel pacchetto.</p>
+    </section>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

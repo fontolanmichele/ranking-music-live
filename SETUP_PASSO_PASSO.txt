@@ -1,0 +1,82 @@
+MUSIC RANKING LIVE — GITHUB EDITION
+GUIDA PASSO PASSO
+
+Questa versione è VUOTA: non contiene il Classicismo né altri ascolti precaricati.
+
+1) CREA FIREBASE
+- Vai su https://console.firebase.google.com/
+- Crea un progetto: music-ranking-live
+- Google Analytics non è necessario.
+
+2) AGGIUNGI UNA WEB APP
+- Dentro il progetto premi l'icona Web </>
+- Nome: Music Ranking Live
+- Non serve Firebase Hosting: useremo GitHub Pages.
+- Firebase mostrerà un blocco `firebaseConfig`.
+
+3) CREA REALTIME DATABASE
+- Firebase -> Build/Crea -> Realtime Database
+- Crea database.
+- Scegli una località europea se disponibile.
+- Copia il suo URL, simile a:
+  https://nomedatabase.europe-west1.firebasedatabase.app
+
+4) ATTIVA AUTENTICAZIONE ANONIMA
+- Firebase -> Authentication -> Inizia
+- Metodo di accesso / Sign-in method
+- Attiva Anonymous / Anonimo.
+- In Authentication -> Settings -> Authorized domains aggiungi:
+  fontolanmichele.github.io
+Gli studenti non vedranno alcun login Google.
+
+5) COMPILA firebase-config.js
+Apri `firebase-config.js` e sostituisci:
+- INCOLLA_API_KEY
+- INCOLLA_AUTH_DOMAIN
+- INCOLLA_DATABASE_URL
+- INCOLLA_PROJECT_ID
+- INCOLLA_STORAGE_BUCKET
+- INCOLLA_MESSAGING_SENDER_ID
+- INCOLLA_APP_ID
+con i valori del tuo progetto Firebase.
+
+6) REGOLE DI SICUREZZA
+- Firebase -> Realtime Database -> Regole
+- Apri `database.rules.json`
+- Copia tutto
+- Incolla nelle regole Firebase
+- Premi Pubblica
+
+7) CREA REPOSITORY GITHUB
+- Nuovo repository: music-ranking-live
+- Carica nella radice:
+  index.html
+  styles.css
+  app.js
+  firebase-config.js
+  database.rules.json
+  README.md
+
+8) ATTIVA GITHUB PAGES
+- Repository -> Settings -> Pages
+- Source: Deploy from a branch
+- Branch: main
+- Folder: / (root)
+- Salva
+
+Il sito sarà simile a:
+https://fontolanmichele.github.io/music-ranking-live/
+
+9) TEST
+- Apri il sito da PC/LIM
+- Carica un PDF con almeno 2 link cliccabili oppure aggiungi 2 ascolti
+- Crea sessione
+- Scansiona QR con telefono
+- Sul telefono devono comparire solo stanza + nickname
+- Prova Ranking, Blind Ranking e Tier List
+
+NOTA PDF
+L'app legge i veri hyperlink presenti nel PDF. Se il PDF è una scansione o contiene solo l'immagine di un URL, il link non è tecnicamente presente e non può essere estratto automaticamente.
+
+NOTA COSTI
+Questa versione non usa API di intelligenza artificiale. Non c'è nessuna funzione IA a pagamento.

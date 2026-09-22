@@ -1,0 +1,39 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "rooms": {
+      "$code": {
+        ".read": "auth != null && data.exists()",
+        ".write": "auth != null && ((!data.exists() && newData.child('ownerUid').val() === auth.uid) || (data.exists() && data.child('ownerUid').val() === auth.uid))",
+        "participants": {
+          "$uid": {
+            ".write": "auth != null && auth.uid === $uid",
+            ".validate": "newData.hasChildren(['nickname','joinedAt']) && newData.child('nickname').isString() && newData.child('nickname').val().length > 0 && newData.child('nickname').val().length <= 30"
+          }
+        },
+        "tierVotes": {
+          "$trackId": {
+            "$uid": {
+              ".write": "auth != null && auth.uid === $uid && root.child('rooms').child($code).child('phase').val() === 'voting'",
+              ".validate": "newData.val() === 'S' || newData.val() === 'A' || newData.val() === 'B' || newData.val() === 'C' || newData.val() === 'D'"
+            }
+          }
+        },
+        "blindVotes": {
+          "$uid": {
+            "$position": {
+              ".write": "auth != null && auth.uid === $uid && !data.exists() && root.child('rooms').child($code).child('phase').val() === 'voting'",
+              ".validate": "newData.isString()"
+            }
+          }
+        },
+        "rankings": {
+          "$uid": {
+            ".write": "auth != null && auth.uid === $uid && root.child('rooms').child($code).child('phase').val() === 'ranking'"
+          }
+        }
+      }
+    }
+  }
+}

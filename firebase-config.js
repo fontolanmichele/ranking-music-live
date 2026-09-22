@@ -1,15 +1,13 @@
-// INCOLLA QUI la configurazione della tua Web App Firebase.
-// La configurazione Firebase lato client NON è una password.
-// La sicurezza vera viene gestita dalle regole del Realtime Database.
+// Configurazione Firebase per Music Ranking Live
 
 export const firebaseConfig = {
-  apiKey: "INCOLLA_API_KEY",
-  authDomain: "INCOLLA_AUTH_DOMAIN",
-  databaseURL: "INCOLLA_DATABASE_URL",
-  projectId: "INCOLLA_PROJECT_ID",
-  storageBucket: "INCOLLA_STORAGE_BUCKET",
-  messagingSenderId: "INCOLLA_MESSAGING_SENDER_ID",
-  appId: "INCOLLA_APP_ID"
+  apiKey: "AIzaSyAq2P19whGw1galLT_fdsl8SzOTjkX5p0A",
+  authDomain: "music-ranking-live.firebaseapp.com",
+  databaseURL: "https://music-ranking-live-default-rtdb.europe-west1.firebasedatabase.app/",
+  projectId: "music-ranking-live",
+  storageBucket: "music-ranking-live.firebasestorage.app",
+  messagingSenderId: "939431014706",
+  appId: "1:939431014706:web:3457459ebe0b0a9c66a72b"
 };
 
 export const isFirebaseConfigured =
